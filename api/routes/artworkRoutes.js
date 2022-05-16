@@ -1,5 +1,4 @@
 const router = require("express").Router();
-
 const multer = require("multer");
 const fs = require("fs");
 const imageModel = require("../models/Artwork");
@@ -46,10 +45,8 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const singleProfile = await profile.find({ _id: req.params.id })
-    res.send(singleProfile)
+    const singleArtwork = await imageModel.find({ _id: req.params.id })
+    res.send(singleArtwork)
 })
-
-
 
 module.exports = router
