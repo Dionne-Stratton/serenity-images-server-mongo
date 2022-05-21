@@ -34,7 +34,7 @@ router.post("/", upload.single("testImage"), (req, res) => {
         console.log("image is saved");
       })
       .catch((err) => {
-        console.log(err, "error has occur");
+        console.log(err, "error");
       });
       res.send('image is saved')
   });
