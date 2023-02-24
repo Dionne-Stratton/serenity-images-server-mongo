@@ -3,6 +3,11 @@ const multer = require("multer");
 const fs = require("fs");
 const imageModel = require("../models/Artwork");
 
+const {
+  validatePayload,
+  validatePayloadTypes,
+} = require('../middleware/addArtMiddleware')
+
 //save to uploads folder before converting then
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -32,7 +37,7 @@ router.post("/", upload.single("testImage"), (req, res) => {
     saveImage
       .save()
       .then((res) => {
-        console.log("image is saved");
+        console.log("image is saved", req.file);
       })
       .catch((err) => {
         console.log(err, "error");
@@ -41,13 +46,26 @@ router.post("/", upload.single("testImage"), (req, res) => {
   });
 
 router.get('/', async (req, res) => {
+
+  try {
     const allData = await imageModel.find()
-  res.json(allData)
+    res.json(allData)
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+
 })
 
 router.get('/:id', async (req, res) => {
-    const singleArtwork = await imageModel.find({ _id: req.params.id })
-    res.send(singleArtwork)
+    
+    try {
+      const singleArtwork = await imageModel.find({ _id: req.params.id })
+      res.send(singleArtwork)
+  } catch (error) {
+      res.status(500).send(error.message)
+  }
 })
+
+
 
 module.exports = router
