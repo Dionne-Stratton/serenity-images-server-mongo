@@ -53,10 +53,10 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-  console.log("get by ID",req.params.id)
-    
-    try {
-      const singleArtwork = await imageModel.find({ _id: req.params.id })
+  
+  try {
+    const singleArtwork = await imageModel.find({ _id: req.params.id })
+    console.log("get by ID",req.params.id)
       res.send(singleArtwork)
   } catch (error) {
       res.status(500).send(error.message)
