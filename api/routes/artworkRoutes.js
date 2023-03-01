@@ -53,6 +53,7 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
+  console.log("get by ID",req.params.id)
     
     try {
       const singleArtwork = await imageModel.find({ _id: req.params.id })
@@ -63,11 +64,12 @@ router.get('/:id', async (req, res) => {
 })
 
 router.delete('/:id', async (req, res) => {
-    
   try {
-      await imageModel.deleteOne({_id: req.params.id})
+    await imageModel.deleteOne({_id: req.params.id})
+    console.log(req.params.id)
       res.send(`deleted`)
   } catch (error) {
+    console.log(req.params.id)
       res.status(500).send(error.message)
   }
 })
