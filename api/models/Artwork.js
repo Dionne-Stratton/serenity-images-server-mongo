@@ -10,8 +10,9 @@ const imgSchema = new mongoose.Schema({
   size: String,
   description: String,
   price: Number,
+  imageURL: String,
   buy: String,
-  podLink: String
+  podLink: String,
 });
 
 module.exports = ImageModel = mongoose.model("Artwork", imgSchema);
