@@ -10,7 +10,7 @@ const imgSchema = new mongoose.Schema({
   size: String,
   description: String,
   price: Number,
-  imageURL: String,
+  medium: String,
   buy: String,
   podLink: String,
 });

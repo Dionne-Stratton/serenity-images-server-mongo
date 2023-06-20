@@ -26,7 +26,7 @@ router.post("/", upload.single("testImage"), (req, res) => {
     size: req.body.size,
     description: req.body.description,
     price: req.body.price,
-    imageURL: req.body.imageURL,
+    medium: req.body.medium,
     buy: req.body.buy,
     podLink: req.body.podLink,
   });
